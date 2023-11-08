@@ -1,6 +1,6 @@
 # svxlink_raspberry with DVSwitch
 **<h1> SVXLink and DVSwitch </h1>**
-<h2>Script build for Raspberry Pi - Repeater or Hotspot. Pour l'instruction en Français, voir en bas. 
+<h2>Script build for Raspberry Pi - Repeater or Hotspot. Pour l'instruction en Français, voir en bas.</h2> 
 <p>While there are repositories from which to download and compile SVXLink they do require quite a bit of understanding.
 This script takes only a little SSH knowledge to pull the various downloads together to create the basis of a ready-to-configure system.</p>
 
@@ -17,14 +17,15 @@ There are few raspberry images that work succesfully for this type of build, whe
 
 Whilst this in itself is not an image, it will take the hard work out of the physical compilation, although leaves a little work for the user to place the finishing touches to the final assembly.
 
-There are a number of available interface boards that have a variety of uses, either as a hotspot or a repeater, or even a fill-in receiver/transceiver for an existing SVXLink repeater. The settings in this build are for a homebrew interface board using GPIO 23 for the Receive COS and GPIO 24 for the PTT controller, or alternative a modified CM-108 that can use udev and drive the PTT from the modification components.
+There are a number of available interface boards that have a variety of uses, either as a hotspot or a repeater, or even a fill-in receiver/transceiver for an existing SVXLink repeater. The settings in this build are for a modified CM-108 that can use udev and drive the PTT from the modification components, or a homebrew interface with an unmodified CM-108 or similar.
 
 When using the GPIO Pins, an earth pin is also require, so using this combination, pins 14,16 and 18 are all adjacent and ideally placed for these functions.
 Pin 14 is the Earth, Pin 16 is GPIO 23 and Pin 18 is GPIO 24.
 
-For a second set of transceivers, you can consider GPIO 17 and 18 as COS & PTT for those. 
+For a second set of transceivers, you can consider GPIO 17 and 18 as COS & PTT for those.
+With the modified CM-108 the transmit is dealt with from the Sound Card settings. 
 
-A copy of the design can be found on g4nab.co.uk. There is also a page showing the modification instructions for a CM-108 USB Sound Card.
+A copy of a simple design can be found on Facebook Svxlink Amateur Radio Users. There is also a page showing the modification instructions for a CM-108 USB Sound Card on g4nab.co.uk.
 
 <h3>The programming of the SDCard</h3>
 
@@ -47,7 +48,9 @@ The script will now update the software. You will be required to add the callsig
 
 At the end of the script the running configuration will be compiled with the given callsign. Then the fun begins. Go and have a coffee or even lunch as the compilation will take about an hour possibly longer. A Raspberry Pi 3 or 4 will take less time, and a Raspberry Pi zero possibly longer than 90 minutes. Hopefully there should be no reported error.
 
-At the end of the compilation type <b>sudo reboot</b> to restart the unit. If all is well the unit wil be only partly functional. 
+At the end of the compilation type <b>sudo reboot</b> to restart the unit if it hasn't already. If all is well the unit will still be only partly functional. You will need to finalise the configuration for SVXLink and DVSwitch. For UsrpLogic, sudo nano /etc/svxlink/svxlink.conf, and look for the paragraph [UsrpLogic] and delete the whole paragraph. You may continue to leave the rest of the functionality in place, as the configuration of the UsrpLogic is now conducted in /etc/svxlink/svxlink.d/UsrpLogic.conf, that you can edit.
+
+For further assistance in relation to setting up SVXLink, UsrpLogic and DVSwitch, I recommend you look closely at groups.io and the Svxlink and Dvswitch groups, as all the answers are there.
 
 You will need to understand the svxlink.conf file and how to make adjustments for Simplex or Repeater operation. In any case you may need to refer to the svxlink.org main page, or svxlink amateur radio users page on facebook, or contact me. For further information also consult the svxlink pages on g4nab.co.uk.
 
