@@ -4,8 +4,8 @@
 <p>While there are repositories from which to download and compile SVXLink they do require quite a bit of understanding.
 This script takes only a little SSH knowledge to pull the various downloads together to create the basis of a ready-to-configure system.</p>
 
-<p>It has to be done under conditions of research in the original source manuals found on Svxlink.org and the man files.
-However this script pulls the SVXLink software from Adi DL1HRC's fork, that has the UsrpLogic necessary to drive the DVSwitch components.</p>
+<p>It has to be done under conditions of research in the original source manuals found on Svxlink.org and the man files http://www.svxlink.org/doc/man/man5/svxlink.conf.</p>
+<p>However this script pulls the SVXLink software from Adi DL1HRC's fork, that has the UsrpLogic necessary to drive the DVSwitch components.</p>
 
 <p>It is NOT plug and play when all is said and done however. It does still require a little manipulation of the configuration files, 
 but the compilation of the major part of the software is done for you.</p></h2>
@@ -66,7 +66,7 @@ To modify the Echolink information type <b>sudo nano svxlink.d/ModuleEchoLink.co
 To incorporated the changes you will need to type <b>sudo systemctl restart svxlink.service</b> and return.
 If you need to make changes to the <b>gpio.conf</b> file you will also need to restart the gpio service too.
 <p>Everything introduced here is from the original presentation by Tobias SM0SVX, modified slightly with some additional modules from DL1HRC.</p>
-<p>Finally it will be necessary to add dvswitch-server to permit interaction with the digital modes. Type in terminal sudo wget https://dvswitch.org/buster and return. When the download is complete, type sudo chmod +x buster, then sudo ./buster. This will introduce the download repository to the raspberry. It will immediately update it, Next type sudo apt install dvswitch-server, which will install all t the necessary functionality of the dvswitch, Mmdvm_bridge and the Analog _bridge together with the md380-emulator. Instructions should be contained within the folders, but refer to groups. io for further help.</p>
+<p>This new script will download and compile DVSwitch into the folder /opt/Analog_Bridge and /opt/MMDVM_Bridge. You will need to modify all three .ini files Analog_Bridge, MMDVM_Bridge and DVSwitch. You will also need to download onto an android device DVSwitch_Mobile to control the functions of DVSwitch remotely, as it cannot yet be done from SVXlink.</p>
 
 <b><h2>Français</h2></b>
 <p>Cette Installation est pour un Raspberry Pi Tous marques. Les paramètres du RRF sont inclues.</p>
