@@ -1,6 +1,6 @@
 # svxlink_raspberry with DVSwitch
 **<h1> SVXLink and DVSwitch </h1>**
-<h2>Script build for Raspberry Pi - Repeater or Hotspot. Pour l'instruction en Français, voir en bas.</h2> 
+<h2>Script build for Raspberry Pi - Repeater or Hotspot - British English Version.</h2> 
 <p>While there are repositories from which to download and compile SVXLink they do require quite a bit of understanding.
 This script takes only a little SSH knowledge to pull the various downloads together to create the basis of a ready-to-configure system.</p>
 
@@ -67,4 +67,6 @@ To incorporated the changes you will need to type <b>sudo systemctl restart svxl
 If you need to make changes to the <b>gpio.conf</b> file you will also need to restart the gpio service too.
 <p>Everything introduced here is from the original presentation by Tobias SM0SVX, modified slightly with some additional modules from DL1HRC.</p>
 <p>This new script will download and compile DVSwitch into the folder /opt/Analog_Bridge and /opt/MMDVM_Bridge. You will need to modify all three .ini files Analog_Bridge, MMDVM_Bridge and DVSwitch. You will also need to download onto an android device DVSwitch_Mobile to control the functions of DVSwitch remotely, as it cannot yet be done from SVXlink.</p>
+
+<p> Il y a un script inclusif pour le téléchargement français</p>
 
