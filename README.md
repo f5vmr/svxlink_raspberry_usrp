@@ -68,33 +68,3 @@ If you need to make changes to the <b>gpio.conf</b> file you will also need to r
 <p>Everything introduced here is from the original presentation by Tobias SM0SVX, modified slightly with some additional modules from DL1HRC.</p>
 <p>This new script will download and compile DVSwitch into the folder /opt/Analog_Bridge and /opt/MMDVM_Bridge. You will need to modify all three .ini files Analog_Bridge, MMDVM_Bridge and DVSwitch. You will also need to download onto an android device DVSwitch_Mobile to control the functions of DVSwitch remotely, as it cannot yet be done from SVXlink.</p>
 
-<b><h2>Français</h2></b>
-<p>Cette Installation est pour un Raspberry Pi Tous marques. Les paramètres du RRF sont inclues.</p>
-<p>1.  Téléchargement du Raspberry OS Lite Bullseye - L'equivalence de Debian 11.</p>
-<p>2.  Utilisation de Raspberry Pi SDCard writer est importante, particulairement si le Wi-Fi soit necessaire.</p>
-<p>3.  Après Installation de la carteSD dedans le Raspberry, fait marcher le système, la carte-son inclu s'il y en a.</p>
-<p>4.  Avec SSH d'un ordinateur au réseau, il faut trouver le terminal - ssh pi@192.168.#.# -p 22 dans votre réseau par un écran de command d'un PC par exemple. le mot-pass normale soit "raspberry".</p>
-<p>5.  Taper <b>sudo apt install git -y</b> au terminal et attendre.</p>
-<p>6.  Taper <b>sudo git clone https://github.com/f5vmr/svxlink_raspberry</b> et attendre.</p>
-<p>7.  Taper <b>sudo chmod +x svxlink_raspberry/*.sh</b></p>
-<p>8.  Taper <b>sudo bash ./svxlink_raspberry/install_fr.sh</b></p>
-<p>9. Ici le script va demander si vous voulez les mises à jour des logiciels. Taper <b>y</b>.</p>
-<p>10. Après plusieurs minutes, pendant lesquelles les mises à jour auront lieu, il y aura une demande pour selectionner la carte-son, suivi par une demande d'indicatif d'appel du nœud proposé vous sera présentée.</p>
-<p>11. Si la réponse est déterminée comme étant valide, le processus de configuration commencera. La compilation se poursuivra jusqu'à un point où la framboise redémarrera. Il est peu probable qu'il fonctionne comme vous le souhaitez, car vous devrez encore apporter quelques modifications à la configuration. Si une erreur se présente, vous devrez déterminer où se trouve l'erreur dans le script. Cependant il a été rigoureusement testé et une erreur est susceptible d'avoir été une interruption indépendante de votre volonté. Dans ce cas, vous devrez répéter le script en omettant les mises à jour.</p>
-<p>12. Reconnectez-vous au Raspberry. Comme la dernière action du script était de lancer SvxLink, vous devez maintenant l'arrêter, afin de modifier les paramètres. La même chose sera nécessaire pour le GPIO.</p>
-<p>13. Alors taper <b>sudo systemctl stop svxlink && sudo systemctl stop svxlink_gpio_setup</b>.
-<p>14. La commande pour l'édition d'un fichier est <b>nano</b>, donc ici taper <b>sudo nano /etc/svxlink/gpio.conf</b> pour regarder les ports GPIO. Dans cette configuration ils sont <b>gpio23</b> pour le squelch et <b>gpio24</b> pour le PTT. Il faut explorer dans votre radio si ils sont 'actif-haut' ou 'active-bas' et faire les changements, sauvegarder le fichier, et taper <b>sudo systemctl restart svxlink_gpio_setup</b> pour les ports devenir operationels.</p>
-<p>15. Avant l'édition du ficher svxlink.conf taper <b>sudo cp /etc/svxlink/svxlink.conf /etc/svxlink/svxlink.bak</b>.
-<p>16. Taper <b>sudo nano /etc/svxlink/svxlink.conf</b>
-<p>Ici, il sera nécessaire de configurer correctement de nombreux paramètres, notamment GPIO, Cartes son, Localisation et autres. Avant de modifier ces paramètres, lisez le fichier man sur internet pour vérifier vos connaissances http://www.svxlink.org/doc/man/man5/svxlink.conf.5.html. Cette page est en anglais, pour traduire. A chaque changement, sauvegardez le résultat, en cas de coupure de courant. La langue défaute est modifiée - fr_FR par le script.</p>
-<p>17. Faire marcher le logicel en teste avec <b>sudo svxlink</b> en mode direct. Le journal se montre. Pour l'arrête à cette étape, simplement taper <b>cntrl-c</b>. Faire les corrections des erreurs un par un, et faire les tests jusqu'a la satifaction. Donc redémmarer svxlink en service avec <b>sudo systemctl restart svxlink | tail -f /var/log/svxlink.log</b>. Le journal vous montre le service. Encore une fois <b>cntrl-c</b> arrête l'apparition du journal.</p>
-<p>18. Vous devrez éditer le fichier node_info.json. Comme précédemment, tapez <b>sudo cp /etc/svxlink/node_info.json /etc/svxlink/node_info.bak</b>. Puis <b>sudo nano /etc/svxlink/node_info.json</b>. Faites attention de laisser tous les '{ }' exactement. Faire Entrez les détails de votre emplacement. Soyez conscient de la convention correcte de longitude et de latitude. Enregistrez le fichier lorsque votre édition est terminée.</b>
-<p>Votre connexion au server a besoin de cette information.</p> 
-<p>Il y a plusieurs solutions, et une question stupide soit la question n'a jamais posé.</p>
-<p>Que puis-je faire avec mon nouveau nœud ?</p>
-<p>Dans ce cas, vous constaterez que votre nœud est déjà prêt à accéder au RRF - Réseau des Répéteurs Francophones. À une exception près, tous les groupes de discussion seront à votre disposition, à l'exception du RRF lui-même. Mais ce n'est pas votre erreur, mais une restriction sur le serveur.</p>
-<p>Pour accéder à ces groupes de discussion, vous devrez envoyer dtmf avec ptt appuyé - 91 + le numéro du groupe + #. Votre nœud répondra "talk group" et le numéro. Le numéro de groupe de discussion est le suivant.</p>
-<p>97 - FON, 98 - Technique, 99 - International, 100 - Bavardage, 101 - Local, 102 - Experimental</p>
-<p>Donc accèder au TG 100, transmettre au DTMF - <b>91100#</b> et le noeud repondra "Talk Groupe un zero zero". Parler à volonté. Pour déconnecter transmettre DTMF <b>910#</b> ou un autre TG.... Très simple. Regarder au même temps le tableau de bord <b>http://rrf4.f5nlg.ovh:82/</b>.
-Il y a une possibilité de connexion aux autres serveurs, comme le serveur britannique. Poser la question au email <b>g4nab.ne63@gmail.com</b></p>
-<b>73 de Chris G4NAB/F5VMR
