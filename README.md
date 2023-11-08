@@ -13,9 +13,9 @@ but the compilation of the major part of the software is done for you.</p></h2>
 <b>First Steps</b>
 <p>Requirements: Raspberry Pi of any mark. USB Soundcard, and an interface card (or a modified USB Soundcard and no interface). One or two transceivers (3 or 4 if you are making a double repeater, for which you will need a second USB soundcard.)</p>
 
-There are few raspberry images that work succesfully for this type of build, where there is a potential for using the eventual application in several directions.
+There are very very few raspberry images that work successfully for this type of build, where there is a potential for using the eventual application in several directions.
 
-Whilst this in itself is not an image, it will take the hard work out of the physical compilation, although leaves a little work for the user to place the finishing touches to the final assembly.
+Whilst this in itself is not an image, it will take the hard work out of the physical compilation, although it leaves a little work for the user to place the finishing touches to the final assembly.
 
 There are a number of available interface boards that have a variety of uses, either as a hotspot or a repeater, or even a fill-in receiver/transceiver for an existing SVXLink repeater. The settings in this build are for a modified CM-108 that can use udev and drive the PTT from the modification components, or a homebrew interface with an unmodified CM-108 or similar.
 
