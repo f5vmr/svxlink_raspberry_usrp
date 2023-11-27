@@ -136,6 +136,7 @@ sleep 10
 cd 
 sudo wget http://dvswitch.org/buster
 sudo chmod +x buster
+sudo ./buster
 sudo apt update -y && sudo apt upgrade
 sudo apt install dvswitch-server -y
 sudo systemctl disable lighttpd
