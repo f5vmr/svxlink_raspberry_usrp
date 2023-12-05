@@ -36,7 +36,7 @@ Once complete, eject the card and install it in the raspberry pi and power it up
 <h3>The compilation</h3>
 The first step will be the following command: <b>sudo apt install -y git</b>  
 
-Now the following command: <b>sudo git clone https://github.com/f5vmr/svxlink_raspberry.git svxlink_raspberry</b> .
+Now the following command: <b>sudo git clone https://github.com/f5vmr/svxlink_raspberry_usrp svxlink_raspberry</b> .
 
 Once this is installed type the following command: <b>sudo chmod +x svxlink_raspberry/*.sh</b>
 
