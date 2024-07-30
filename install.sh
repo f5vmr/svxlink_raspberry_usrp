@@ -10,10 +10,10 @@ sudo bash /home/pi/svxlink_raspberry/audio_update.sh
 # Auto run install.sh
 #
 
-CONF=/etc/svxlink/svxlink.conf
-GPIO=/etc/svxlink/gpio.conf
-HOME=/home/pi
-OP=/etc/svxlink
+CONF="/etc/svxlink/svxlink.conf"
+GPIO="/etc/svxlink/gpio.conf"
+HOME="/home/pi"
+OP="/etc/svxlink"
 cd
 sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
