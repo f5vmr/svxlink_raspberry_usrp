@@ -26,7 +26,7 @@ VERSIONS=svxlink/src/versions
 
 # Installing other packages
 	echo -e `date` " ${YELLOW} Installing required software packages${NORMAL}"
-	sudo apt install build-essential g++ make cmake libsigc++-2.0-dev php8.2 libgsm1-dev libudev-dev libpopt-dev tcl-dev libgpiod-dev gpiod libgcrypt20-dev libspeex-dev libasound2-dev alsa-utils libjsoncpp-dev libopus-dev rtl-sdr libcurl4-openssl-dev libogg-dev librtlsdr-dev groff doxygen graphviz python3-serial toilet -y
+	sudo apt install build-essential g++ make cmake libsigc++-2.0-dev lighttpd php8.2 libgsm1-dev libudev-dev libpopt-dev tcl-dev libgpiod-dev gpiod libgcrypt20-dev libspeex-dev libasound2-dev alsa-utils libjsoncpp-dev libopus-dev rtl-sdr libcurl4-openssl-dev libogg-dev librtlsdr-dev groff doxygen graphviz python3-serial toilet -y
 	echo         
 	echo -e "${GREEN} Enter the node callsign: \n ${NORMAL}"
 	echo
@@ -86,7 +86,7 @@ VERSIONS=svxlink/src/versions
 	sudo mkdir /home/pi/scripts
 	sudo cp -r svxlink_raspberry/svxlink.conf $OP
 	#sudo cp -r svxlink_raspberry/gpio.conf $OP
-	#sudo cp -r svxlink_raspberry/node_info.json $OP/node_info.json
+	sudo cp -r svxlink_raspberry/node_info.json $OP/node_info.json
 	sudo cp -r svxlink_raspberry/resetlog.sh /home/pi/scripts/resetlog.sh
 	(crontab -l 2>/dev/null; echo "59 23 * * * /home/pi scripts/resetlog.sh ") | crontab -
 #
@@ -138,8 +138,8 @@ sudo chmod +x buster
 sudo ./buster
 sudo apt update -y && sudo apt upgrade
 sudo apt install dvswitch-server -y
-sudo systemctl disable lighttpd
-sudo reboot
+#sudo systemctl disable lighttpd
+#sudo reboot
 
 
 	
