@@ -84,7 +84,7 @@ VERSIONS=svxlink/src/versions
 	cd $HOME
 	echo -e `date` "${RED} Downloading prepared configuration files from G4NAB …${NORMAL}"
 	sudo mkdir /home/pi/scripts
-	#sudo cp -r svxlink_raspberry/svxlink.conf $OP
+	sudo cp -r svxlink_raspberry/svxlink.conf $OP
 	#sudo cp -r svxlink_raspberry/gpio.conf $OP
 	#sudo cp -r svxlink_raspberry/node_info.json $OP/node_info.json
 	sudo cp -r svxlink_raspberry/resetlog.sh /home/pi/scripts/resetlog.sh
