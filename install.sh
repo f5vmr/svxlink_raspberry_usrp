@@ -20,7 +20,7 @@ sudo apt-get install -y ca-certificates curl gnupg
 
 sudo apt update
 sudo apt upgrade -y
-VERSIONS=svxlink/src/versions
+VERSIONS="svxlink/src/versions"
 
 	echo -e `date` " ${YELLOW}  *** commence build *** ${NORMAL}"
 
@@ -44,6 +44,7 @@ VERSIONS=svxlink/src/versions
 	sudo useradd -g svxlink -d /etc/svxlink svxlink
 	sudo usermod -aG audio,nogroup,svxlink,plugdev svxlink
 	sudo usermod -aG gpio svxlink
+	sleep 40
 	sudo systemctl stop apache2 && sudo systemctl disable apache2
 
 # Downloading Source Code for SVXLink
