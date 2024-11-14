@@ -1,5 +1,5 @@
-# svxlink_raspberry with Tetra
-**<h1> SVXLink and Tetra </h1>**
+# svxlink_raspberry with DVSwitch
+**<h1> SVXLink and DvSwitch </h1>**
 <h2>Script build for Raspberry Pi - Repeater or Hotspot - British English Version.</h2> 
 <p>While there are repositories from which to download and compile SVXLink they do require quite a bit of understanding.
 This script takes only a little SSH knowledge to pull the various downloads together to create the basis of a ready-to-configure system.</p>
