@@ -19,14 +19,14 @@ sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
 
 sudo apt update
-sudo apt upgrade -y
+sudo apt upgrade -yq
 VERSIONS="svxlink/src/versions"
 
 	echo -e `date` " ${YELLOW}  *** commence build *** ${NORMAL}"
 
 # Installing other packages
 	echo -e `date` " ${YELLOW} Installing required software packages${NORMAL}"
-	sudo apt install build-essential g++ make cmake libsigc++-2.0-dev lighttpd php7.4 libgsm1-dev libudev-dev libpopt-dev tcl-dev libgpiod-dev gpiod libgcrypt20-dev libspeex-dev libasound2-dev alsa-utils libjsoncpp-dev libopus-dev rtl-sdr libcurl4-openssl-dev libogg-dev librtlsdr-dev groff doxygen graphviz python3-serial toilet -y
+	sudo apt-get -yq install gcc g++ make cmake libgcrypt-dev libgsm1-dev libsigc++-2.0-dev tcl-dev libspeex-dev libasound2-dev libpopt-dev libssl-dev libopus-dev groff libcurl4-openssl-dev git mc libjsoncpp-dev libgpiod-dev gpiod
 	echo         
 	echo -e "${GREEN} Enter the node callsign: \n ${NORMAL}"
 	echo
@@ -41,27 +41,36 @@ VERSIONS="svxlink/src/versions"
 # Creating Groups and Users
 	echo -e `date` "${YELLOW} Creating Groups and Users ${NORMAL}"
 	sudo groupadd svxlink
-	sudo useradd -g svxlink -d /etc/svxlink svxlink
+	sudo useradd -g svxlink -G tty,svxlink,audio,plugdev,gpio,dialout -c "SvxLink Master" --shell=/bin/false -m svxlink
+ -d /etc/svxlink svxlink
 	sudo usermod -aG audio,nogroup,svxlink,plugdev svxlink
 	sudo usermod -aG gpio svxlink
 	sleep 40
 	sudo systemctl stop apache2 && sudo systemctl disable apache2
+	sudo wget https://github.com/pjsip/pjproject/archive/refs/tags/2.12.1.tar.gz
+	sudo mv 2.12.1.tar.gz pjProject-2.12.1.tar.gz
+	sudo tar -zxvf pjProject-2.12.1.tar.gz
+	cd pjproject-2.12.1
+	sudo ./configure --disable-video --disable-libwebrtc CPPFLAGS=-fPIC CXXFLAGS=-fPIC CFLAGS=-fPIC
+	sudo make dep
+	sudo make
+	sudo make install
 
 # Downloading Source Code for SVXLink
 	echo -e `date` "${YELLOW} downloading SVXLink source code … ${NORMAL}"
 	cd
 	sudo git clone https://github.com/dl1hrc/svxlink.git
 	cd svxlink
-	sudo git checkout svxlink-usrp
+	sudo git checkout tetra-contrib
 	cd src
 	sudo mkdir build
 	cd build	
 	# Compilation
 	
-	sudo cmake -DUSE_QT=OFF -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc -DLOCAL_STATE_DIR=/var -DWITH_CONTRIB_USRP_LOGIC=ON -DWITH_SYSTEMD=ON  ..
-	echo -e `date` "${YELLOW} Compiling ${NORMAL}"
+	sudo cmake -DUSE_QT=OFF -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc -DLOCAL_STATE_DIR=/var -DCMAKE_BUILD_TYPE=Release -DWITH_CONTRIB_TETRA_LOGIC=ON -DWITH_SYSTEMD=ON -DWITH_CONTRIB_SIP_LOGIC=ON ..
+echo -e `date` "${YELLOW} Compiling ${NORMAL}"
 	sudo make
-	sudo make doc
+	#sudo make doc
 	echo `date` "${RED} Installing SVXlink ${NORMAL}"
 	sudo make install
 	cd /usr/share/svxlink/events.d
@@ -119,6 +128,10 @@ VERSIONS="svxlink/src/versions"
 	sudo sed -i "s/\#DEFAULT_LANG=en_US/DEFAULT_LANG=en_GB/g" /etc/svxlink/svxlink.d/ModuleMetarInfo.conf	
 
 	fi
+	sudo chown -R svxlink:svxlink /usr/share/svxlink/events.d
+	sudo chown -R svxlink:svxlink /home/pi//svxlink
+	sudo chown -R svxlink:svxlink /var/spool/svxlink
+
 	echo `date` "${RED} Authorise GPIO setup service and svxlink service${NORMAL}"
 	sudo systemctl enable svxlink_gpio_setup
 	sleep 10
