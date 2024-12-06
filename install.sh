@@ -61,13 +61,13 @@ VERSIONS="svxlink/src/versions"
 	cd
 	sudo git clone https://github.com/dl1hrc/svxlink.git
 	cd svxlink
-	sudo git checkout tetra-contrib
+	sudo git checkout svxlink-usrp
 	cd src
 	sudo mkdir build
 	cd build	
 	# Compilation
 	
-	sudo cmake -DUSE_QT=OFF -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc -DLOCAL_STATE_DIR=/var -DCMAKE_BUILD_TYPE=Release -DWITH_CONTRIB_TETRA_LOGIC=ON -DWITH_SYSTEMD=ON -DWITH_CONTRIB_SIP_LOGIC=ON ..
+	sudo cmake -DUSE_QT=OFF -DCMAKE_INSTALL_PREFIX=/usr -DSYSCONF_INSTALL_DIR=/etc -DLOCAL_STATE_DIR=/var -DCMAKE_BUILD_TYPE=Release -DWITH_CONTRIB_USRP_LOGIC=ON -DWITH_SYSTEMD=ON ..
 echo -e `date` "${YELLOW} Compiling ${NORMAL}"
 	sudo make
 	#sudo make doc
